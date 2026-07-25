@@ -22,6 +22,8 @@ static void normal_b(char b[][6], int size);
 static void point_b(char* b[], int size);
 static char* ph();
 char hellotwo(int a, int b);
+static int sum(int a, int b);
+static int minus(int a, int b);
 
 int main(void) {
     
@@ -118,6 +120,7 @@ int main(void) {
     while ((*str = *origin) != '\0') { // str에 오리진 실값 복사하고, 그게 문자열 끝인지 판정까지 한번에 슛
         str++;
         origin++;
+        // 그냥 조건을 *str로 하고 복사를 내부에서 하는 경우 \0을 while 이후에 넣어줘야함, 또한 ++때매 \0칸 띄어쓰려고 while 밖에서 증가 필요는 없음
     }
 
     printf("%s\n", copy);
@@ -164,6 +167,30 @@ int main(void) {
     printf("-------------------------------\n");
 
 
+    // 9. 함수 포인터 배열 써보기
+    int (*hpb[2])(int, int);
+
+    // hpb[0] = sum(1, 2); 이러면 함수 주소가 아닌 함수 계산 후 리턴 값이 들어가 int 실값이 들어가게됨 = 실패
+    hpb[0] = sum;
+    hpb[1] = minus;
+
+    printf("%d, %d\n", hpb[0](1,2), hpb[1](3, 2));
+
+    for (int j = 0; j < 2; j++) {
+        printf("%d\n", hpb[j](1, 2));
+    }
+
+    printf("-------------------------------\n");
+
+
+}
+
+static int sum(int a, int b) {
+    return a + b;
+}
+
+static int minus(int a, int b) {
+    return a - b;
 }
 
 static char* ph() { // 포인터 타입 함수 ( != 함수 포인터 )
