@@ -42,7 +42,7 @@ static void check_duplication(char ball[SIZE]) {
 		for (int j = i + 1; j < SIZE; j++) {
 			if (ball[i] == ball[j]) {
 				ball[i] = (rand() % 10) + '0';
-				catched++; // for문에서 반복이 진행될수록 변화된 앞의 값을 수정하지 못하여 catch 긴급 투입
+				catched++; // for문에서 반복이 진행될수록 변화된 앞의 값을 수정하지 못하여 catched 긴급 투입
 			}
 		}
 	}
